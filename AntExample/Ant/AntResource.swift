@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum AntResourceState {
+enum AntResourceState: Int {
     case none
     case waiting
     case downloading
@@ -17,7 +17,7 @@ enum AntResourceState {
     case failed
 }
 
-public class AntResource: NSObject {
+public class AntResource: NSObject, NSCoding {
     let urlStr: String
     var state: AntResourceState
     let fileName: String
@@ -29,6 +29,25 @@ public class AntResource: NSObject {
         self.state = state
         self.fileName = urlStr.md5
         self.writtenBytes = writtenBytes
-        self.totalBytes = totalBytes
+        //为了避免计算进度比例的时候除数小于1造成的计算错误，此处做处理
+        self.totalBytes = totalBytes >= 1 ? totalBytes : 1
+    }
+    
+    // MARK: - NSCoding
+    public required init?(coder aDecoder: NSCoder) {
+        self.urlStr = aDecoder.decodeObject(forKey: "urlStr") as! String
+        self.state = AntResourceState(rawValue: Int(aDecoder.decodeCInt(forKey: "state")))!
+        self.fileName = aDecoder.decodeObject(forKey: "fileName") as! String
+        self.writtenBytes = UInt64(aDecoder.decodeInt64(forKey: "writeenBytes"))
+        self.totalBytes = UInt64(aDecoder.decodeInt64(forKey: "totalBytes"))
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.urlStr, forKey: "urlStr")
+        aCoder.encodeCInt(Int32(self.state.rawValue), forKey: "state")
+        aCoder.encode(self.fileName, forKey: "fileName")
+        aCoder.encode(Int64(self.writtenBytes), forKey: "writeenBytes")
+        aCoder.encode(Int64(self.totalBytes), forKey: "totalBytes")
     }
 }
+
