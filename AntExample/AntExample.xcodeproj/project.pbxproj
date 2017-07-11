@@ -14,6 +14,7 @@
 		574CF9411F14AB2200121F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574CF93F1F14AB2200121F23 /* LaunchScreen.storyboard */; };
 		574CF94A1F14ABCB00121F23 /* AntResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CF9491F14ABCB00121F23 /* AntResource.swift */; };
 		574CF94C1F14ABDE00121F23 /* AntDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CF94B1F14ABDE00121F23 /* AntDownloader.swift */; };
+		574CF9541F14BA1C00121F23 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CF9531F14BA1C00121F23 /* String+MD5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		574CF9421F14AB2200121F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		574CF9491F14ABCB00121F23 /* AntResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntResource.swift; sourceTree = "<group>"; };
 		574CF94B1F14ABDE00121F23 /* AntDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntDownloader.swift; sourceTree = "<group>"; };
+		574CF9531F14BA1C00121F23 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				574CF9491F14ABCB00121F23 /* AntResource.swift */,
 				574CF94B1F14ABDE00121F23 /* AntDownloader.swift */,
+				574CF9531F14BA1C00121F23 /* String+MD5.swift */,
 			);
 			path = Ant;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			files = (
 				574CF94C1F14ABDE00121F23 /* AntDownloader.swift in Sources */,
 				574CF94A1F14ABCB00121F23 /* AntResource.swift in Sources */,
+				574CF9541F14BA1C00121F23 /* String+MD5.swift in Sources */,
 				574CF9391F14AB2200121F23 /* ViewController.swift in Sources */,
 				574CF9371F14AB2200121F23 /* AppDelegate.swift in Sources */,
 			);
