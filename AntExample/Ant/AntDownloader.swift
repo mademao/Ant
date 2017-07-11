@@ -30,6 +30,11 @@ class AntDownloader: NSObject {
     let allowMaxDownload: Int
     /// 此时下载数
     var currentDownload: Int = 0
+    /// 保存当前下载队列
+    let downloadQueeu = [String]()
+    /// 保存当前task
+    let tasks = [String : URLSessionDownloadTask]()
+    /// 
     
     override init() {
         self.allowMaxDownload = 4
