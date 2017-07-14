@@ -21,9 +21,21 @@ func createSessionConfiguration() -> URLSessionConfiguration {
     return configuration
 }
 
+/// 构建本地数据
+func loadLocalAntInfo() -> [String : AntResource] {
+    var dic = NSKeyedUnarchiver.unarchiveObject(withFile: getAntFileInfoPlist()) as? [String : AntResource]
+    if dic == nil {
+        dic = [String : AntResource]()
+    }
+    return dic!
+}
+
 class AntDownloader: NSObject {
-    /// 串行线程
-    let synQueue = DispatchQueue(label: "cn.com.Pluto.AntDownloader", attributes: DispatchQueue.Attributes.concurrent)
+    /// 单例
+    static let standardDownloader = AntDownloader()
+    
+    /// 线程
+    let optionQueue = DispatchQueue(label: "cn.com.Pluto.AntDownloader", attributes: DispatchQueue.Attributes.concurrent)
     /// 基础session
     var session: URLSession?
     /// 最大允许下载数
@@ -31,18 +43,21 @@ class AntDownloader: NSObject {
     /// 此时下载数
     var currentDownload: Int = 0
     /// 保存当前下载队列
-    let downloadQueeu = [String]()
+    var downloadQueeu = [String]()
     /// 保存当前task
-    let tasks = [String : URLSessionDownloadTask]()
-    /// 
+    var tasks = [String : URLSessionDownloadTask]()
+    /// 所有调用过Ant的下载资源
+    var allResources: [String : AntResource]
     
     override init() {
         self.allowMaxDownload = 4
+        self.allResources = loadLocalAntInfo()
         super.init()
         let optionQueue = OperationQueue()
         optionQueue.maxConcurrentOperationCount = 1
         self.session = URLSession(configuration: createSessionConfiguration(), delegate: self, delegateQueue: optionQueue)
     }
+    
 }
 
 extension AntDownloader: URLSessionDataDelegate {

@@ -27,3 +27,9 @@ func getAntFileDir() -> String {
     try! fileManager.createDirectory(atPath: dir, withIntermediateDirectories: true, attributes: nil)
     return dir
 }
+
+func getAntFileInfoPlist() -> String {
+    var dir = getAntDir()
+    dir = dir + "/" + AntFileInfoName
+    return dir
+}
