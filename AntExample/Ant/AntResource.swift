@@ -49,5 +49,12 @@ public class AntResource: NSObject, NSCoding {
         aCoder.encode(Int64(self.writtenBytes), forKey: "writeenBytes")
         aCoder.encode(Int64(self.totalBytes), forKey: "totalBytes")
     }
+    
+    // MARK: - description
+    public override var description: String {
+        get {
+            return "💾-----\nurl:" + urlStr + "\nstate:" + "\(state)\n-------"
+        }
+    }
 }
 

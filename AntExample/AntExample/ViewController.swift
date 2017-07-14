@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print(getAntFileDir())
         let ant = AntDownloader.standardDownloader
-        
+        print(ant.allResources["123"]!)
     }
 }
 
